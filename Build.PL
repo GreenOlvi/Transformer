@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 use warnings;
@@ -11,6 +11,7 @@ Module::Build->new(
    dist_author   => 'Piotr Szulc <szulo123@gmail.com>',
    dist_abstract => 'Module for transforming data',
    requires      => {
+      'Moose'      => 0,
       'Parse::CSV' => '2.00',
    },
 )->create_build_script();
