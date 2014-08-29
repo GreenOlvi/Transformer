@@ -10,7 +10,7 @@ has input  => (is => 'ro', isa => 'Transformer::Supply', lazy => 1,
 has output => (is => 'ro', isa => 'Transformer::Supply', lazy => 1,
    default => sub { Transformer::Supply->new });
 
-has process => (is => 'rw', isa => 'CodeRef', lazy => 1,
+has process => (is => 'ro', isa => 'CodeRef', lazy => 1,
    default => sub { \&_process });
 
 

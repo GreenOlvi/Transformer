@@ -1,7 +1,8 @@
 use strict;
 use warnings;
 
-use Test::More tests => 3;
+use Test::Deep;
+use Test::More tests => 4;
 
 use Transformer::Supply;
 
@@ -27,6 +28,23 @@ subtest 'Simple process' => sub {
    $input->more(@test_values);
 
    is_deeply(\@result, \@test_values);
+};
+
+subtest 'Add one to each value' => sub {
+   my @test_values = (1, 15, 1.4, -10);
+   my @results = map { $_ + 1 } @test_values;
+
+   my $c = Transformer::Component->new(process => sub {
+      my $self = shift;
+      $self->output->more($_[0] + 1);
+   });
+
+   my @output = ();
+   $c->output->tap(sub { push @output, $_[0] });
+
+   $c->input->more(@test_values);
+
+   cmp_deeply(\@output, \@results);
 };
 
 
