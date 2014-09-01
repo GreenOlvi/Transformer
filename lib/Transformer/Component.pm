@@ -5,6 +5,8 @@ use warnings;
 
 use Moose;
 
+use Transformer::Supply;
+
 has input  => (is => 'ro', isa => 'Transformer::Supply', lazy => 1,
    default => sub { Transformer::Supply->new });
 has output => (is => 'ro', isa => 'Transformer::Supply', lazy => 1,
